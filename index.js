@@ -6,7 +6,6 @@ const fs = require("fs");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
-const { off } = require("process");
 let teamMembers = [];
 
 //FIRST PROMPT
@@ -37,8 +36,8 @@ function newEmployee() {
     ])
     .then(function(data){
         if(data.option === "Add an Engineer.") addEng();
-        if(data.option === "Add an Intern.") console.log("Intern Works");
-        if(data.option === "No other members, generate site.") console.log("Generate Site Works");
+        if(data.option === "Add an Intern.") addInt();
+        if(data.option === "No other members, generate site.") console.log(teamMembers);
     })
 }
 
@@ -114,5 +113,42 @@ function addEng() {
         newEmployee();
     })
 }
+
+//ADD INTERN
+function addInt() {
+    console.log("=== What is the Intern's ===")
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Name:",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "ID:",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "email:",
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "School:",
+        },
+    ])
+    .then(function(data) {
+        const name = data.name;
+        const id = data.name;
+        const email = data.email;
+        const school = data.school;
+        let teamMember = new Intern(name, id, email, school);
+        teamMembers.push(teamMember);
+        newEmployee();
+    });
+}
+
 
 init();

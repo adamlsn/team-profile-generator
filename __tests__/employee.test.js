@@ -1,4 +1,3 @@
-const { test, expect } = require("@jest/globals");
 const Employee = require("../lib/employee");
 const sample = new Employee("Lorem Ipsum", "555", "username@domain.com");
 
@@ -13,13 +12,13 @@ test("Valid Employee ID Number", () => {
     expect(sample.id).toEqual(expect.any(String));
 });
 
-test("Valid Email", () => {
+test("Valid Employee Email", () => {
     expect(sample.email).toEqual("username@domain.com");
     expect(sample.email).toContain("@");
     expect(sample.email).toContain(".com");
     expect(sample.email).toEqual(expect.any(String));
 });
 
-test("Returns Employee Role", () => {
+test("Return Employee Role", () => {
     expect(sample.getRole()).toBe("Employee");
 })
