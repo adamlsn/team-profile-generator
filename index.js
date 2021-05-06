@@ -36,7 +36,7 @@ function newEmployee() {
         }
     ])
     .then(function(data){
-        if(data.option === "Add an Engineer.") console.log("Engineer Works");
+        if(data.option === "Add an Engineer.") addEng();
         if(data.option === "Add an Intern.") console.log("Intern Works");
         if(data.option === "No other members, generate site.") console.log("Generate Site Works");
     })
@@ -44,7 +44,7 @@ function newEmployee() {
 
 //ADD MANAGER
 function addMngr() {
-    console.log("What is the Manager's");
+    console.log("=== What is the Manager's ===");
     inquirer.prompt([
         {
             type: "input",
@@ -78,5 +78,41 @@ function addMngr() {
         newEmployee();
     })
 };
+
+//ADD ENGINEER
+function addEng() {
+    console.log("=== What is the Engineer's ===")
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Name:",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "ID:",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "email:",
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "GitHub username:",
+        },
+    ])
+    .then(function(data){
+        const name = data.name;
+        const id = data.name;
+        const email = data.email;
+        const github = data.github;
+        let teamMember = new Engineer(name, id, email, github);
+        teamMembers.push(teamMember);
+        newEmployee();
+    })
+}
 
 init();
