@@ -16,6 +16,7 @@ test("Valid Employee ID Number", () => {
 test("Valid Email", () => {
     expect(sample.email).toEqual("username@domain.com");
     expect(sample.email).toContain("@");
+    expect(sample.email).toContain(".com");
     expect(sample.email).toEqual(expect.any(String));
 });
 
