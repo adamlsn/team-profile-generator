@@ -25,9 +25,26 @@ function init() {
     })
 };
 
+//NEW EMPLOYEE
+function newEmployee() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Would you like to add another team member?",
+            name: "option",
+            choices: ["Add an Engineer.", "Add an Intern.", "No other members, generate site."]
+        }
+    ])
+    .then(function(data){
+        if(data.option === "Add an Engineer.") console.log("Engineer Works");
+        if(data.option === "Add an Intern.") console.log("Intern Works");
+        if(data.option === "No other members, generate site.") console.log("Generate Site Works");
+    })
+}
+
 //ADD MANAGER
 function addMngr() {
-    console.log("What is the Manager's")
+    console.log("What is the Manager's");
     inquirer.prompt([
         {
             type: "input",
@@ -57,7 +74,9 @@ function addMngr() {
         const officeNumber = data.officeNumber;
         const teamMember = new Manager(name, id, email, officeNumber);
         teamMembers.push(teamMember);
+        
+        newEmployee();
     })
-}
+};
 
 init();
