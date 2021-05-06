@@ -20,7 +20,6 @@ function init() {
     .then(function(data) {
         const teamName = data.teamName;
         teamMembers.push(teamName);
-        console.log("function works");
         console.log(teamName);
     })
 }
