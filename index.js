@@ -152,7 +152,20 @@ function addInt() {
 
 //GENERATE WEBPAGE
 function generatePage() {
+    //array HTML code is pushed to
     const html = [];
+    
+    //icons
+    const mailIcon = `<i class="fas fa-envelope"></i>`;
+    const IDIcon = `<i class="fas fa-id-card"></i>`;
+    const managerIcon = `<i class="fas fa-user-tie"></i>`;
+    const engineerIcon = `<i class="fas fa-user-cog"></i>`;
+    const internIcon = `<i class="fas fa-user-graduate"></i>`;
+    const officeIcon = `<i class="fas fa-building"></i>`;
+    const githubIcon = `<i class="fab fa-github"></i>`;
+    const schoolIcon = `<i class="fas fa-school"></i>`;
+
+    //HTML body
     const htmlHead = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -162,6 +175,7 @@ function generatePage() {
         <title>${teamMembers[0]}</title>
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/52104032b6.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header class="header">
@@ -170,30 +184,38 @@ function generatePage() {
         <main class="container">`
     html.push(htmlHead);
 
+    //Adding cards
     for(let i = 1; i < teamMembers.length; i++) {
+        
+        let userIcon = "";
+        if(teamMembers[i].title === "Manager") userIcon = managerIcon;
+        if(teamMembers[i].title === "Engineer") userIcon = engineerIcon;
+        if(teamMembers[i].title === "Intern") userIcon = internIcon;
+
         let htmlBody = `    
             <div class = "card">
                 <div class = "card-header">
                     <h4>${teamMembers[i].name}</h4>
-                    <h5>${teamMembers[i].title}</h5>
+                    <h5>${userIcon} ${teamMembers[i].title}</h5>
                 </div>
 
                 <div class = "card-content">
-                    <p>email: <a href="mailto:${teamMembers[i].email}">${teamMembers[i].email}</a></p>
-                    <p>ID: ${teamMembers[i].id}</p>
+                    <p>${mailIcon} email: <a href="mailto:${teamMembers[i].email}">${teamMembers[i].email}</a></p>
+                    <p>${IDIcon} ID: ${teamMembers[i].id}</p>
                 
         `;
 
+        //Manager addition
         if(teamMembers[i].officeNumber) {
-            htmlBody += `   <p>Office Number: ${teamMembers[i].officeNumber}</p>`
+            htmlBody += `<p>${officeIcon} Office Number: ${teamMembers[i].officeNumber}</p>`
         }
-
+        //Engineer addition
         if(teamMembers[i].github) {
-            htmlBody += `   <p>GitHub: <a href="https://github.com/${teamMembers[i].github}">${teamMembers[i].github}</a></p>`
+            htmlBody += `<p>${githubIcon} GitHub: <a href="https://github.com/${teamMembers[i].github}">${teamMembers[i].github}</a></p>`
         }
-
+        //Intern addition
         if(teamMembers[i].school) {
-            htmlBody += `   <p>School: ${teamMembers[i].school}</p>`
+            htmlBody += `<p>${schoolIcon} School: ${teamMembers[i].school}</p>`
         }
 
         htmlBody += (`
@@ -208,6 +230,7 @@ function generatePage() {
 </html>
     `);
     
+    //Writing HTML to index.html
     fs.writeFile(`./dist/index.html`, html.join(" "), function(err) {});
 };
 
