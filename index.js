@@ -175,25 +175,37 @@ function generatePage() {
             <div class = "card">
                 <div class = "card-header">
                     <h4>${teamMembers[i].name}</h4>
-                    <h4>${teamMembers[i].title}</h4>
+                    <h5>${teamMembers[i].title}</h5>
                 </div>
 
                 <div class = "card-content">
-                    <p>email: <a herf="mailto:${teamMembers[i].email}">${teamMembers[i].email}</a></p>
+                    <p>email: <a href="mailto:${teamMembers[i].email}">${teamMembers[i].email}</a></p>
                     <p>ID: ${teamMembers[i].id}</p>
                 
         `;
+
+        if(teamMembers[i].officeNumber) {
+            htmlBody += `   <p>Office Number: ${teamMembers[i].officeNumber}</p>`
+        }
+
+        if(teamMembers[i].github) {
+            htmlBody += `   <p>GitHub: <a href="https://github.com/${teamMembers[i].github}">${teamMembers[i].github}</a></p>`
+        }
+
+        if(teamMembers[i].school) {
+            htmlBody += `   <p>School: ${teamMembers[i].school}</p>`
+        }
+
         htmlBody += (`
             </div>
         </div>
         `)
         html.push(htmlBody)
     }
-    html.join("");
     html.push(`
-            </main>
-        </body>
-    </html>
+        </main>
+    </body>
+</html>
     `);
     
     fs.writeFile(`./dist/index.html`, html.join(" "), function(err) {});
