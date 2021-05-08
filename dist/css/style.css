@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    align-items: center; 
+    height: 100%;
+}
+
+.header {
+    padding: 40px 0 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+h4, h5 {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.container {
+    position: absolute;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: center;
+    width: 275px;
+}
+
+.card {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 15px 0 15px 0;
+    padding: 0 1vw 0 1vw;
+    align-content: center;
+    width: 250px;
+    height: 30vh;
+}
+
+.card-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 2vh 0 1vh 0;
+}
+
+.card-content {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
