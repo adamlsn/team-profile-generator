@@ -171,30 +171,32 @@ function generatePage() {
     html.push(htmlHead);
 
     for(let i = 1; i < teamMembers.length; i++) {
-        let htmlBody = [`    
+        let htmlBody = `    
             <div class = "card">
                 <div class = "card-header">
                     <h4>${teamMembers[i].name}</h4>
                     <h4>${teamMembers[i].title}</h4>
-                <div>
+                </div>
 
                 <div class = "card-content">
                     <p>email: <a herf="mailto:${teamMembers[i].email}">${teamMembers[i].email}</a></p>
                     <p>ID: ${teamMembers[i].id}</p>
-        `];
-        htmlBody.push(`
+                
+        `;
+        htmlBody += (`
             </div>
         </div>
         `)
         html.push(htmlBody)
     }
+    html.join("");
     html.push(`
             </main>
         </body>
     </html>
     `);
     
-    fs.writeFile(`./dist/index.html`, html.join(""), function(err) {});
+    fs.writeFile(`./dist/index.html`, html.join(" "), function(err) {});
 };
 
 init();
