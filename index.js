@@ -170,15 +170,31 @@ function generatePage() {
         <main class="container">`
     html.push(htmlHead);
 
-    console.log(html);
+    for(let i = 1; i < teamMembers.length; i++) {
+        let htmlBody = [`    
+            <div class = "card">
+                <div class = "card-header">
+                    <h4>${teamMembers[i].name}</h4>
+                    <h4>${teamMembers[i].title}</h4>
+                <div>
 
-    fs.writeFile("./dist/index.html", data, (err) => {
-        if(err){
-            console.log(`There seems to have been an error, see code ${err}`);
-            return;
-        }
-        console.log("File Created Succesfully!")
-    })
+                <div class = "card-content">
+                    <p>email: <a herf="mailto:${teamMembers[i].email}">${teamMembers[i].email}</a></p>
+                    <p>ID: ${teamMembers[i].id}</p>
+        `];
+        htmlBody.push(`
+            </div>
+        </div>
+        `)
+        html.push(htmlBody)
+    }
+    html.push(`
+            </main>
+        </body>
+    </html>
+    `);
+    
+    fs.writeFile(`./dist/index.html`, html.join(""), function(err) {});
 };
 
 init();
