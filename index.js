@@ -229,9 +229,11 @@ function generatePage() {
     </body>
 </html>
     `);
-    
+
+    const fileName = teamMembers[0].replace(/\s+/g, "");
     //Writing HTML to index.html
-    fs.writeFile(`./dist/index.html`, html.join(" "), function(err) {});
+    fs.writeFile(`./dist/${fileName}.html`, html.join(" "), function(err) {});
+    console.log(`File generated successfully. Check the "/dist" folder for ${fileName}.html`)
 };
 
 init();
